@@ -1,26 +1,25 @@
 package com.company;
 
+import java.io.FileDescriptor;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.*;
-import java.util.logging.Logger;
 
 public class Main {
 
     public static void main(String[] args) {
+        PrintStream stream = new PrintStream(new FileOutputStream(FileDescriptor.out));
 
-        Logger logger = Logger.getLogger(Main.class.getName());
 
+        stream.print("Enter number of names you wanna sort: \n");
         Scanner number = new Scanner(System.in);
-        logger.info("Enter number of words you wanna sort: ");
-
         int n = number.nextInt();
 
         Scanner scanner = new Scanner(System.in);
-        logger.info("Enter number of words you wanna sort: ");
         String[] names = new String[n];
-
         for (int i = 0; i < n; i++)
         {
-            logger.info("Enter a String: ");
+            stream.print("Enter a Name: \n");
             names[i] = scanner.nextLine();
         }
         String temp;
@@ -37,12 +36,11 @@ public class Main {
             }
         }
 
-        // print output array
-        logger.info( "The names in alphabetical order are: ");
-        List<String> list = Arrays.asList(names);
-        String sortedList = list.toString();
-        logger.info(sortedList);
-
-
+        stream.print("The names in alphabetical order are: : \n");
+        for (int i = 0; i < n; i++)
+        {
+            stream.print(names[i] +"\n");
+        }
+        stream.close();
     }
 }
